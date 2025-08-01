@@ -1,0 +1,30 @@
+I would like you to implement a module named TopModule with the
+following interface.  All ports are active–high unless otherwise noted.
+
+ - input  wr_clk            // write‐domain clock
+ - input  wr_rst_n          // async active-low reset (synchronised inside)
+ - input  wr_en
+ - input  [DATA_W-1:0] wr_data
+ - output full
+ - output almost_full
+ - input  rd_clk            // read‐domain clock
+ - input  rd_rst_n          // async active-low reset (synchronised inside)
+ - input  rd_en
+ - output [DATA_W-1:0] rd_data
+ - output empty
+ - output almost_empty
+
+The FIFO depth is 2**DEPTH_P2 (4 ≤ DEPTH_P2 ≤ 10).  
+almost_full shall assert when the number of stored words is
+≥ DEPTH − AFULL_THR, and almost_empty when the stored words ≤ AEMPTY_THR
+(default AFULL_THR = 2, AEMPTY_THR = 2).
+
+Use Gray-coded write and read pointers when crossing clock domains.
+`full`, `almost_full`, `empty` and `almost_empty` must be glitch-free.
+If wr_en is asserted while full is high, the write must be ignored.
+If rd_en is asserted while empty is high, rd_data must retain its
+previous value.  Reset places the FIFO in the empty condition on both
+sides.
+
+Use separate always blocks for the pointer flip-flops and for the flag
+combinational logic.  Assign any pointer encodings you wish.
