@@ -30,6 +30,10 @@ module TopModule(
 // POS: out_pos = (!a & b & c & d) | (a & b & c & d) | (!a & !b & c & !d)
 
 assign out_sop = (~a & ~b & c & ~d) | (~a & b & c & d) | (a & b & c & d);
-assign out_pos = (~a & ~b & c & ~d) | (~a & b & c & d) | (a & b & c & d);
+
+//KMAP simplification
+//out_pos = (c) & ((~a & ~b) | (b & d) | (a & d))
+//out_pos = c & (~a & ~b + d)
+assign out_pos = c & ((~a & ~b) | d);
 
 endmodule
