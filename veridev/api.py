@@ -10,7 +10,6 @@ import logging
 # Import your existing veridev modules
 from veridev.tools.simulator import sim_verilator_sv
 from veridev.agents.top_agent import TopAgent
-from config import Config
 from autogen_core.models._model_client import ModelInfo
 from autogen_ext.models.openai import OpenAIChatCompletionClient
 from dotenv import load_dotenv

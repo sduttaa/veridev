@@ -5,6 +5,7 @@ autogen-ext>=0.7.0
 
 # AI/ML dependencies
 openai>=1.0.0
+tiktoken>=0.6.0
 
 # Vector database and RAG
 chromadb>=1.0.0
