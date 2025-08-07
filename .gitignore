@@ -1,2 +1,5 @@
 verienv/
 veridev_db/
+veridev/rag_data/fine_tune_dataset.jsonl
+*.sqlite3
+*.db
