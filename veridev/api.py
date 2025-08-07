@@ -1,4 +1,5 @@
-from fastapi import FastAPI, HTTPException, BackgroundTasks
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import asyncio
 import os
@@ -18,6 +19,19 @@ from dotenv import load_dotenv
 load_dotenv()
 
 app = FastAPI(title="VeriDev API", description="AI-powered SystemVerilog generation")
+
+# Add CORS middleware to allow frontend connections
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "https://roaring-mandazi-c5f67e.netlify.app",  # Replace with your actual domain
+        "http://localhost:3000",  # For local development
+        #"http://localhost:5173",  # For Vite dev server
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 class GenerationRequest(BaseModel):
     spec: str
