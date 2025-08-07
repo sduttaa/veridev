@@ -41,7 +41,7 @@ RUN verilator --version
 WORKDIR /app
 
 # Create non-root user for security
-RUN useradd -m -u 1000 veridev && \
+RUN useradd -m veridev && \
     chown -R veridev:veridev /app
 USER veridev
 
