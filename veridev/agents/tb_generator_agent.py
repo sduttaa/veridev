@@ -2,8 +2,6 @@
 
 from pydantic import BaseModel
 
-from tree_sitter import Language, Parser
-from outlines import models, generate, grammars
 from outlines.generate.cfg import cfg   
 
 from autogen_core.models import ChatCompletionClient

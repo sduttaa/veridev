@@ -4,10 +4,6 @@ autogen-ext>=0.7.0
 
 # AI/ML dependencies
 openai>=1.0.0
-sentence-transformers>=5.0.0
-torch>=2.0.0
-transformers>=4.40.0
-huggingface-hub>=0.20.0
 
 # Vector database and RAG
 chromadb>=1.0.0
@@ -18,26 +14,9 @@ pydantic>=2.0.0
 # Web API framework (for Railway deployment)
 fastapi>=0.100.0
 uvicorn[standard]>=0.20.0
-python-multipart>=0.0.6
-
-# HTTP client
-httpx>=0.27.0
 
 # Configuration and utilities
 python-dotenv>=1.0.0
-typer>=0.9.0
-rich>=10.0.0
 
 # Async support
 nest-asyncio>=1.6.0
-
-# Scientific computing
-numpy>=1.22.0
-scipy>=1.9.0
-
-# File handling and serialization
-orjson>=3.9.0
-pyyaml>=6.0.0
-
-
-
