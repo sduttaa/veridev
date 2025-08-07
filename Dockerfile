@@ -49,7 +49,7 @@ USER veridev
 COPY --chown=veridev:veridev requirements.txt .
 
 # Install Python dependencies
-RUN pip3 install --user --no-cache-dir -r requirements.txt
+RUN pip3 install --user --no-cache-dir --break-system-packages -r requirements.txt
 
 # Add user's pip bin to PATH
 ENV PATH="/home/veridev/.local/bin:$PATH"
