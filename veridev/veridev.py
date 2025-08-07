@@ -4,6 +4,7 @@ from datetime import timedelta
 import asyncio
 from config import Config
 import sys
+import os
 
 
 from veridev.agents.top_agent import TopAgent
@@ -159,6 +160,12 @@ def main():
     elif sys.argv[1] == "--spec" and len(sys.argv) > 2:
         spec = sys.argv[2]
         asyncio.run(run_interactive(args,spec))
+    elif "--web" in sys.argv:
+        import uvicorn
+        from veridev.api import app
+        port = int(os.environ.get("PORT", 8000))
+        uvicorn.run(app, host="0.0.0.0", port=port)
+        return
 
 if __name__ == "__main__":
     main()
