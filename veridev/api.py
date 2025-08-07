@@ -13,6 +13,10 @@ from veridev.agents.top_agent import TopAgent
 from config import Config
 from autogen_core.models._model_client import ModelInfo
 from autogen_ext.models.openai import OpenAIChatCompletionClient
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 app = FastAPI(title="VeriDev API", description="AI-powered SystemVerilog generation")
 
@@ -42,8 +46,9 @@ async def generate_verilog(request: GenerationRequest):
             output_path = temp_dir
             
             # Initialize model clients (same as veridev.py)
-            cfg = Config("./key.cfg")
-            gemini_api_key = str(cfg["GEMINI_API_KEY"])
+            gemini_api_key = os.environ.get("GEMINI_API_KEY")
+            if gemini_api_key is None:
+                raise ValueError("GEMINI_API_KEY environment variable is not set")
             
             simple_model_client = OpenAIChatCompletionClient(model="gemini-2.0-flash",
                                                     #model_info=ModelInfo(vision=True, function_calling=True, json_output=True, family="unknown", structured_output=True),

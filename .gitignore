@@ -1,5 +1,15 @@
+# Virtual environments
 verienv/
+
+# Database files
 veridev_db/
+
+# Large dataset files
 veridev/rag_data/fine_tune_dataset.jsonl
+
+# Environment variables (contains secrets)
+.env
+
+# IDE and OS files
 *.sqlite3
 *.db

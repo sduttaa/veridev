@@ -1,9 +1,9 @@
-import asyncio
+
 from pydantic import BaseModel
 
 from autogen_core.models import ChatCompletionClient
 
-from veridev._prompts import RTL_SYSTEM_PROMPT, REASONING_PROMPT
+from veridev._prompts import RTL_SYSTEM_PROMPT
 from veridev.agent_template import HardwareAssistantAgent
 from veridev.tools.syntax_checker import verilator_RTLlint_sv_tool
 from veridev.tools.rag import RAGMemory

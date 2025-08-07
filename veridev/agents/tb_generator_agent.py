@@ -2,8 +2,6 @@
 
 from pydantic import BaseModel
 
-from outlines.generate.cfg import cfg   
-
 from autogen_core.models import ChatCompletionClient
 
 from veridev._prompts import TB_SYSTEM_PROMPT, TB_REVIEW_SYSTEM_PROMPT

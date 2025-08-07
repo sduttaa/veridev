@@ -2,9 +2,12 @@ import argparse
 import time
 from datetime import timedelta
 import asyncio
-from config import Config
 import sys
 import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 
 from veridev.agents.top_agent import TopAgent
@@ -27,7 +30,6 @@ args_dict = {
     #"filter_instance": "^Prob.*$",
     # "filter_instance": "^(.*)$",
     "path_benchmark": "./verilog-eval/dataset_spec-to-rtl",
-    "key_cfg_path": "./key.cfg",
     "output_path": "./output"
 }                                       # Note that we are using shortened prompts 
 
@@ -49,9 +51,9 @@ async def run(args: argparse.Namespace):
         args.path_benchmark,
         args.filter_instance,
     )
-
-    cfg = Config(args.key_cfg_path)
-    gemini_api_key = str(cfg["GEMINI_API_KEY"])
+    gemini_api_key = os.environ.get("GEMINI_API_KEY")
+    if gemini_api_key is None:
+        raise ValueError("GEMINI_API_KEY environment variable is not set")
 
     simple_model_client = OpenAIChatCompletionClient(model="gemini-2.0-flash",
                                                     #model_info=ModelInfo(vision=True, function_calling=True, json_output=True, family="unknown", structured_output=True),
@@ -101,8 +103,9 @@ async def run(args: argparse.Namespace):
 
 async def run_interactive(args: argparse.Namespace, spec:str):
 
-    cfg = Config(args.key_cfg_path)
-    gemini_api_key = str(cfg["GEMINI_API_KEY"])
+    gemini_api_key = os.environ.get("GEMINI_API_KEY")
+    if gemini_api_key is None:
+        raise ValueError("GEMINI_API_KEY environment variable is not set")
 
     simple_model_client = OpenAIChatCompletionClient(model="gemini-2.0-flash",
                                                     #model_info=ModelInfo(vision=True, function_calling=True, json_output=True, family="unknown", structured_output=True),
