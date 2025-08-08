@@ -24,6 +24,7 @@ app = FastAPI(title="VeriDev API", description="AI-powered SystemVerilog generat
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
+        "https://configai.co",
         "https://roaring-mandazi-c5f67e.netlify.app",  # Replace with your actual domain
         "http://localhost:3000",  # For local development
         "http://localhost:5173",  # For Vite dev server
